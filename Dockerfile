@@ -1,6 +1,6 @@
 FROM python:3.8-slim-buster as main
 ENV DOCKER=true
-ENV FALCONHOST=true
+ENV FLY=true
 ENV GIT_PYTHON_REFRESH=quiet
 ENV PIP_NO_CACHE_DIR=1
 RUN apt-get update && apt-get install apt-utils libcairo2 git curl ffmpeg libavcodec-dev libavutil-dev libavformat-dev libtool liblz4-dev libunwind-dev libswscale-dev libavdevice-dev -y --no-install-recommends
@@ -13,5 +13,5 @@ RUN pip install --no-warn-script-location --no-cache-dir -r requirements.txt
 RUN pip install tgcrypto werkzeug moviepy psutil pytube pillow websockets pydub python-dateutil SpeechRecognition requests-toolbelt emoji Hikka-TL 
 EXPOSE 8080
 RUN mkdir /data
-CMD ["python3", "-m", "hikka"]
+CMD ["python3", "-m", "hikka","--proxy-pass"]
 
